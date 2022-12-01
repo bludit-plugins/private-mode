@@ -39,9 +39,21 @@ class PrivateModePlugin extends Plugin
              */
             $login = new Login();
             if (! $login->isLogged()) {
-                Alert::set($this->getValue('message'));
                 Redirect::url(DOMAIN_ADMIN);
             }
         }
+    }
+
+    public function loginBodyBegin()
+    {
+        $html  = '<div class="container">';
+        $html .= '<div class="row justify-content-md-center pt-5">';
+        $html .= '<div class="col-md-4 text-center alert alert-warning">';
+        $html .= $this->getValue('message');
+        $html .= '</div>';
+        $html .= '</div>';
+        $html .= '</div>';
+
+        return $html;
     }
 }
